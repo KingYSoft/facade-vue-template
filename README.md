@@ -4,33 +4,35 @@
 
 基于 vue+typescript 一个快速开发模板
 
-## 组件
+## 使用
+
+不能使用 dotnet 命令，需要安装 dotnet core sdk
+https://dotnet.microsoft.com/download
+
+1. 安装 facade 命令工具，dotnet tool install --global Facade.ToolCLI
+2. 使用命令构建项目 facade init facade-vue -t vue
+
+### 组件
 
 默认采用 element-ui 组件
 
-## 主题
+### 主题
 
 可以在`./assets/element-variables.scss`中修改主题样式
 
-## 使用步骤
+### 步骤
 
 ```
 yarn install
 ```
 
-### 运行
-
 ```
 yarn run serve
 ```
 
-### 编译
-
 ```
 yarn run build
 ```
-
-### 修复 lint
 
 ```
 yarn run lint
