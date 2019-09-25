@@ -2,7 +2,7 @@
 
 ## 说明
 
-基于 vue+typescript 一个快速开发模板
+基于 vue + typescript 一个快速开发模板，使用nswag自动生成webapi
 
 ## 使用
 
@@ -20,20 +20,9 @@ https://dotnet.microsoft.com/download
 
 可以在`./assets/element-variables.scss`中修改主题样式
 
-### 步骤
-
-```
-yarn install
-```
-
-```
-yarn run serve
-```
-
-```
-yarn run build
-```
-
-```
-yarn run lint
-```
+### 步骤 
+- 安装 `yarn install` 
+- 启动 `yarn run serve`
+- 编译 `yarn run build`
+- 检查 `yarn run lint`
+- 生成webapi `yarn run refresh`
