@@ -9,11 +9,25 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
-
+import app from '../../utils/app'
 @Component({
   components: {
     HelloWorld
   }
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  public mounted() {
+    app.event.on('abp.signalr.connected', (c: any) => {
+      console.log(c)
+    })
+    this.initSocket()
+  }
+  public initSocket() {
+    const baseUrl = 'http://39.98.48.213:8001/pims/signalr'
+    const token =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEwMDA1IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6Iua1i-ivlTEiLCJodHRwOi8vd3d3LmFzcG5ldGJvaWxlcnBsYXRlLmNvbS9pZGVudGl0eS9jbGFpbXMvdGVuYW50SWQiOiIxIiwic3ViIjoiMTAwMDUiLCJqdGkiOiJhNWJiOTY2NS00NzEwLTQ3NWMtOTA5ZS04ZDZiNjU2NTZiYmIiLCJpYXQiOjE1NzI0MDQ5NzAsIm5iZiI6MTU3MjQwNDk3MCwiZXhwIjoxNTcyNDkxMzcwLCJpc3MiOiJQaW1zIiwiYXVkIjoiUGltcyJ9.aMrJ_M40r1TY8unUiderid5CGBTLSl845pXvNjAX8Ec'
+    const qs = 'enc_auth_token=' + encodeURIComponent(token)
+    app.socket.connect(baseUrl, qs)
+  }
+}
 </script>
