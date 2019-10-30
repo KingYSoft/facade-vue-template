@@ -83,29 +83,14 @@ export default class AppSocket {
   /**
    * 发送消息
    * @param {string} methodName 发送的方法名
-   * @param {any[]} args 发送的请求参数
+   * @param {any} request 发送的请求参数
    */
-  public sendMessage(methodName: string, ...args: any[]): Promise<any> {
+  public sendMessage(methodName: string, request: any) {
     if (this.connection) {
-      return this.connection.invoke(methodName, args)
+      return this.connection.invoke(methodName, request)
     } else {
       return Promise.reject('websocket 还未连接')
     }
-
-    // return new Promise((resolve, reject) => {
-    //   if (that._connection) {
-    //     that._connection
-    //       .invoke(methodName, args)
-    //       .then((resp) => {
-    //         resolve(resp)
-    //       })
-    //       .catch((err) => {
-    //         reject(err)
-    //       })
-    //   } else {
-    //     reject('websocket 还未连接')
-    //   }
-    // })
   }
   /**
    * 接受消息
@@ -118,9 +103,7 @@ export default class AppSocket {
   ) {
     const that = this
     if (that.connection) {
-      that.connection.on(methodName, (response) => {
-        callback(response)
-      })
+      that.connection.on(methodName, callback)
     } else {
       console.log('websocket 还未连接')
     }
