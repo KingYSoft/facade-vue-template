@@ -51,7 +51,7 @@ export default class AppSocket {
 
       // Register to get notifications
       connection.on('getNotification', (notification) => {
-        app.event.trigger('abp.notifications.received', notification)
+        app.event.trigger('app.notifications.received', notification)
       })
       return connection
         .start()
@@ -62,7 +62,7 @@ export default class AppSocket {
           connection.invoke('register').then(() => {
             console.log('Registered to the SignalR server!')
           })
-          app.event.trigger('abp.signalr.connected', connection)
+          app.event.trigger('app.socket.connected', connection)
           return connection
         })
         .catch((error) => {
