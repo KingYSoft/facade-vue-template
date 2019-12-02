@@ -18,10 +18,12 @@ import { config } from '../../utils/config'
   }
 })
 export default class Home extends Vue {
-  public async created() {
-    await this.initSocket()
+  public created() {
+    // await this.initSocket()
   }
-  // public async mounted() {}
+  public mounted() {
+    // app.speech.speak('患者,1,1,0,1,家属，请到谈话室')
+  }
   public async initSocket() {
     const baseUrl = config.BaseUrl + '/signalr'
     const token = ''
