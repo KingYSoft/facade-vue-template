@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { ServiceProxyExtention } from './service.proxy.extenstions'
-import { config } from './config'
+import { BASE_URL } from './config'
 
 import router from '@/router'
 
@@ -45,7 +45,7 @@ class OpenApi {
         return Promise.reject(err)
       }
     )
-    this.fetch = new ServiceProxyExtention(config.BaseUrl, instance)
+    this.fetch = new ServiceProxyExtention(BASE_URL, instance)
   }
 }
-export default new OpenApi()
+export const API = new OpenApi()
