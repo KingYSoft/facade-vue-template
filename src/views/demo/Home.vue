@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../../assets/logo.png" />
+    <img alt="Vue logo"
+         src="../../assets/logo.png" />
     <HelloWorld msg="欢迎使用facade vue框架" />
   </div>
 </template>
