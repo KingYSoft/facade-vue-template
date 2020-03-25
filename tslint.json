@@ -21,6 +21,7 @@
     }],
     "no-var-keyword": true,
     "semicolon": [true, "never"],
-    "no-console": false
+    "no-console": false,
+    "max-classes-per-file": false
   }
 }
