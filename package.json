@@ -30,10 +30,22 @@
     "node-sass": "^4.9.0",
     "prettier": "^1.19.1",
     "js-beautify": "^1.10.3",
+    "lint-staged": "^10.1.1",
     "sass-loader": "^7.1.0",
     "typescript": "^3.4.3",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.3.0"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "vue-cli-service lint"
+    ],
+    "*.vue": [
+      "vue-cli-service lint"
+    ]
   }
 }
