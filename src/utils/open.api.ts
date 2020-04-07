@@ -1,32 +1,33 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { ServiceProxyExtention } from './service.proxy.extenstions'
-import { BASE_URL } from './config'
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { ServiceProxyExtention } from './service.proxy.extenstions';
+import { BASE_URL } from './config';
 
-import router from '@/router'
+import router from '@/router';
 
 class OpenApi {
-  public fetch: ServiceProxyExtention
+  public fetch: ServiceProxyExtention;
   constructor() {
     const instance = axios.create({
       timeout: 10 * 1000
-    })
+    });
     instance.interceptors.request.use(
       (requestConfig: AxiosRequestConfig) => {
         if (requestConfig.headers) {
-          const token = sessionStorage.getItem('token')
-          requestConfig.headers.Authorization = 'Bearer ' + token
+          const token = sessionStorage.getItem('token');
+          requestConfig.headers.Authorization = 'Bearer ' + token;
         }
-        return requestConfig
+        return requestConfig;
       },
-      (err) => {
-        return Promise.reject(err)
+      err => {
+        return Promise.reject(err);
       }
-    )
+    );
     instance.interceptors.response.use(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (resp: AxiosResponse<any>) => {
-        return resp
+        return resp;
       },
-      (err) => {
+      err => {
         // console.log(err.response)
         switch (err.response.status) {
           case 401:
@@ -37,15 +38,15 @@ class OpenApi {
               query: {
                 redirect: router.currentRoute.fullPath
               }
-            })
-            break
+            });
+            break;
           default:
-            break
+            break;
         }
-        return Promise.reject(err)
+        return Promise.reject(err);
       }
-    )
-    this.fetch = new ServiceProxyExtention(BASE_URL, instance)
+    );
+    this.fetch = new ServiceProxyExtention(BASE_URL, instance);
   }
 }
-export const API = new OpenApi()
+export const API = new OpenApi();

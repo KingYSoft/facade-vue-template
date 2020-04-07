@@ -7,17 +7,15 @@
 //----------------------
 // ReSharper disable InconsistentNaming
 
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export class ServiceProxy {
-  private instance: AxiosInstance
-  private baseUrl: string
-  protected jsonParseReviver:
-    | ((key: string, value: any) => any)
-    | undefined = undefined
+  private instance: AxiosInstance;
+  private baseUrl: string;
+  protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
   constructor(baseUrl?: string, instance?: AxiosInstance) {
-    this.instance = instance ? instance : axios.create()
-    this.baseUrl = baseUrl ? baseUrl : ''
+    this.instance = instance ? instance : axios.create();
+    this.baseUrl = baseUrl ? baseUrl : '';
   }
 }
