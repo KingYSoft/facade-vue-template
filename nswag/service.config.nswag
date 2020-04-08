@@ -44,7 +44,7 @@
       "typeStyle": "Class",
       "classTypes": [],
       "extendedClasses": [],
-      "extensionCode": "../src/utils/nswag.extensions.ts",
+      "extensionCode": "../src/services/api/nswag.extensions.ts",
       "generateDefaultValues": true,
       "excludedTypeNames": [],
       "excludedParameterNames": [],
@@ -63,7 +63,7 @@
       "enumNameGeneratorType": null,
       "serviceHost": null,
       "serviceSchemes": null,
-      "output": "../src/utils/service.proxy.ts"
+      "output": "../src/services/api/service.proxy.ts"
     }
   }
 }

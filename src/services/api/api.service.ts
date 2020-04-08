@@ -1,10 +1,10 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { ServiceProxyExtention } from './service.proxy.extenstions';
-import { BASE_URL } from './config';
+import { BASE_URL } from '../config/config.service';
 
 import router from '@/router';
 
-class OpenApi {
+export default class ApiService {
   public fetch: ServiceProxyExtention;
   constructor() {
     const instance = axios.create({
@@ -49,4 +49,3 @@ class OpenApi {
     this.fetch = new ServiceProxyExtention(BASE_URL, instance);
   }
 }
-export const API = new OpenApi();
