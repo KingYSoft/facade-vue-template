@@ -1,6 +1,6 @@
 import * as signalR from '@aspnet/signalr';
-import { ICallback, ITriggerCallback } from '../../models';
-import { facade } from '../';
+import { ICallback } from '../../models';
+import { facade, IFacade } from '../';
 
 export default class SignalrService {
   private pingTimer: NodeJS.Timeout | undefined;
@@ -20,7 +20,7 @@ export default class SignalrService {
       baseUrl += (baseUrl.indexOf('?') === -1 ? '?' : '&') + queryString;
     }
 
-    const start = async (transport: signalR.HttpTransportType, trigger: ITriggerCallback): Promise<signalR.HubConnection> => {
+    const start = async (transport: signalR.HttpTransportType, facade_: IFacade): Promise<signalR.HubConnection> => {
       console.log('Starting connection using ' + signalR.HttpTransportType[transport] + ' transport');
 
       const connection = new signalR.HubConnectionBuilder().withUrl(baseUrl, transport).build();
@@ -39,7 +39,7 @@ export default class SignalrService {
 
       // Register to get notifications
       connection.on('getNotification', notification => {
-        trigger('facade.notifications.received', notification);
+        facade_.event.trigger('facade.notifications.received', notification);
       });
       try {
         await connection.start();
@@ -49,18 +49,18 @@ export default class SignalrService {
         connection.invoke('register').then(() => {
           console.log('Registered to the SignalR server!');
         });
-        trigger('facade.socket.connected', connection);
+        facade_.event.trigger('facade.socket.connected', connection);
         return connection;
       } catch (error) {
         console.log('Cannot start the connection using ' + signalR.HttpTransportType[transport] + ' transport. ' + error.message);
         if (transport !== signalR.HttpTransportType.LongPolling) {
-          return start(transport + 1, trigger);
+          return start(transport + 1, facade_);
         }
         return Promise.reject(error);
       }
     };
 
-    return start(signalR.HttpTransportType.WebSockets, facade.event.trigger);
+    return start(signalR.HttpTransportType.WebSockets, facade);
   };
 
   /**

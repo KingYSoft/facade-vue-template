@@ -5,8 +5,19 @@ import CookieService from './cookie/cookie.service';
 import EventService from './event/event.service';
 import SignalrService from './signalr/signalr.service';
 import SpeechService from './speech/speech.service';
+import LogService from './log/log.service';
 
-export const facade = {
+export interface IFacade {
+  config: ConfigService;
+  event: EventService;
+  log: LogService;
+  utils: UtilsService;
+  api: ApiService;
+  cookie: CookieService;
+  socket: SignalrService;
+  speech: SpeechService;
+}
+export const facade: IFacade = {
   /**
    * 全局配置
    */
@@ -15,6 +26,10 @@ export const facade = {
    * 全局事件
    */
   event: new EventService(),
+  /**
+   * 全局日志
+   */
+  log: new LogService(),
   /**
    * utils
    */
