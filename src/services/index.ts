@@ -30,7 +30,7 @@ export const app = {
   /**
    * web socket
    */
-  signalr: new SignalrService(),
+  socket: new SignalrService(),
   /**
    * 全局语音服务
    */

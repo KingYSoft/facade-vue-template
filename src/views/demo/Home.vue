@@ -8,8 +8,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
-import { APP } from '../../utils/app';
-import { SOCKET_BASE_URL } from '../../utils/config';
+import { app } from '../../services';
 
 @Component({
   components: {
@@ -18,23 +17,23 @@ import { SOCKET_BASE_URL } from '../../utils/config';
 })
 export default class Home extends Vue {
   public created() {
-    // await this.initSocket()
+    // await this.initSocket();
   }
   public mounted() {
-    // APP.speech.speak('患者,1,1,0,1,家属，请到谈话室')
+    // app.speech.speak('患者,1,1,0,1,家属，请到谈话室')
   }
   public async initSocket() {
     const token = '';
     const qs = 'enc_auth_token=' + encodeURIComponent(token);
-    await APP.socket.connect(SOCKET_BASE_URL, qs);
+    await app.socket.connect(app.config.SOCKET_BASE_URL, qs);
 
     // 接受websocket 消息
-    APP.socket.receiveMessage('DemoReceived', (name, message) => {
+    app.socket.receiveMessage('DemoReceived', (name, message) => {
       console.log(name);
       console.log(message);
     });
     // 发送websocket 消息
-    APP.socket.sendMessage('Demo', 'jjj').then(res => {
+    app.socket.sendMessage('Demo', 'jjj').then(res => {
       console.log(res);
     });
   }

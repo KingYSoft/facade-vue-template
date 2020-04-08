@@ -1,6 +1,6 @@
 import * as signalR from '@aspnet/signalr';
 import { ICallback } from '../../models';
-import { app } from '../index';
+import { app } from '../';
 
 export default class SignalrService {
   private pingTimer: NodeJS.Timeout | undefined;
