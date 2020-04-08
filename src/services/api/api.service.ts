@@ -28,20 +28,21 @@ export default class ApiService {
         return resp;
       },
       err => {
-        // console.log(err.response)
-        switch (err.response.status) {
-          case 401:
-          case 403:
-            // 跳转登录页面，并将要浏览的页面fullPath传过去，登录成功后跳转需要访问的页面
-            router.replace({
-              name: 'login',
-              query: {
-                redirect: router.currentRoute.fullPath
-              }
-            });
-            break;
-          default:
-            break;
+        if (err && err.response && err.response.status) {
+          switch (err.response.status) {
+            case 401:
+            case 403:
+              // 跳转登录页面，并将要浏览的页面fullPath传过去，登录成功后跳转需要访问的页面
+              router.replace({
+                name: 'login',
+                query: {
+                  redirect: router.currentRoute.fullPath
+                }
+              });
+              break;
+            default:
+              break;
+          }
         }
         return Promise.reject(err);
       }

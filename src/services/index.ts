@@ -6,11 +6,15 @@ import EventService from './event/event.service';
 import SignalrService from './signalr/signalr.service';
 import SpeechService from './speech/speech.service';
 
-export const app = {
+export const facade = {
   /**
    * 全局配置
    */
   config: new ConfigService(),
+  /**
+   * 全局事件
+   */
+  event: new EventService(),
   /**
    * utils
    */
@@ -23,10 +27,6 @@ export const app = {
    * cookie
    */
   cookie: new CookieService(),
-  /**
-   * 全局事件
-   */
-  event: new EventService(),
   /**
    * web socket
    */
