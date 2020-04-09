@@ -2,6 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../../assets/logo.png" />
     <HelloWorld msg="欢迎使用facade vue框架" />
+    <div class="text">测试文字</div>
   </div>
 </template>
 
@@ -44,3 +45,12 @@ export default class Home extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.home {
+  .text {
+    margin: 20px 0;
+    color: $--color-primary;
+  }
+}
+</style>

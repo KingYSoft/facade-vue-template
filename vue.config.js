@@ -41,7 +41,7 @@ module.exports = {
     extract: true,
     sourceMap: false,
     loaderOptions: {
-      scss: {
+      sass: {
         prependData: `@import "src/assets/element-variables.scss";`
       }
     }
