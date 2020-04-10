@@ -8,6 +8,7 @@
       <el-button type="info">信息按钮</el-button>
       <el-button type="warning">警告按钮</el-button>
       <el-button type="danger">危险按钮</el-button>
+      <el-button type="primary" @click="closeWindow">关闭当前页</el-button>
     </el-row>
     <h1>欢迎使用自定义主题的element-ui</h1>
     <el-row>
@@ -26,6 +27,10 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
+
+  public closeWindow() {
+    window.location.replace('about:blank');
+  }
 }
 </script>
 
